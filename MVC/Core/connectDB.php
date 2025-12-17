@@ -4,7 +4,7 @@
         // public $username = "root";
         // public $password = "";
         // public $dbname = "quanlythuvien";
-        // public $conn;   
+        // public $conn;    
         // function __construct(){
         //     $this -> conn = new mysqli($this -> servername, $this -> username, $this -> password, $this -> dbname);
         //     mysqli_set_charset($this -> conn, 'UTF8');
