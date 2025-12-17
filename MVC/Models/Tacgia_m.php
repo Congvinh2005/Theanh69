@@ -1,4 +1,4 @@
-    <?php 
+<?php 
     class Tacgia_m extends connectDB{
         // function getAllTacgia(){
         function getAllTacgia(){
@@ -13,5 +13,14 @@
                 $sql = "INSERT INTO Tacgia VALUES ('$mtg', '$ht', '$ns', '$gt', '$dt', '$mail', '$dc')";
                 return mysqli_query($this->con, $sql);
             }
+        function checktrungmaTG($mtg){
+            $sql = "SELECT * FROM Tacgia WHERE Matacgia = '$mtg'";
+            $result = mysqli_query($this -> con, $sql);
+            if(mysqli_num_rows($result) > 0){
+                return true; // Mã tác giả đã tồn tại
+            } else {
+                return false; // Mã tác giả chưa tồn tại
+            }
     }
-    ?>
+}
+?>

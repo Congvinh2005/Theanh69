@@ -8,9 +8,7 @@
 
 
         function   Get_data (){
-            // Get data from model if needed
             $data = [];
-
             $this -> view('Master',[
                 'page'=>'Tacgia_v',
                 'data'=>$data
@@ -27,15 +25,24 @@
                 $mail = $_POST['txtEmail'];
                 $dc = $_POST['txtDiachi'];
 
-                $kq = $this -> tg -> Tacgia_ins($mtg,$ht,$ns,$gt,$dt,$mail,$dc);
-                if($kq){
-                    echo "<script>alert('Thêm tác giả thành công');</script>";
-                } else {
+                // Kiểm tra trung mã tác giả
+        $kq1 = $this -> tg -> checktrungmaTG($mtg);
+        if($kq1){
+            echo "<script>alert('Mã tác giả đã tồn tại, vui lòng nhập mã khác');</script>";
+           
+        } 
+        else
+         {
+            $kq = $this -> tg -> Tacgia_ins($mtg,$ht,$ns,$gt,$dt,$mail,$dc);
+            if($kq){
+                echo "<script>alert('Thêm tác giả thành công');</script>";
+            } else {
                     echo "<script>alert('Thêm tác giả thất bại');</script>";
                 }
+        }
 
                 // gọi lại giao diện
-                $this -> view('Master',[
+                $this -> view('Master',[    
                     'page'=>'Tacgia_v',
                     'mtg'=>$mtg,
                     'ht'=>$ht,
@@ -45,29 +52,32 @@
                     'mail'=>$mail,
                     'dc'=>$dc
                 ]);
-        }
+            
 
-        // function Capnhattacgia(){
-        //     $data = [];
 
-        //     $this -> view('Master',[
-        //         "page"=>'Tacgia_v',
-        //         "data"=>$data
-        //     ]);
-        // }
 
-        // function Danhsachtacgia(){
-        //     // You may want to implement this differently to show a list of authors
-        //     $data = [
-        //         "authors" => $this->tg->getAllTacgia()
-        //     ];
-
-        //     $this -> view('Master',[
-        //         "page"=>'Tacgia_v',
-        //         "data"=>$data
-        //     ]);
-        // }
+       }
     }
 }
 
+ // function Capnhattacgia(){
+ // $data = [];
+
+ // $this -> view('Master',[
+ // "page"=>'Tacgia_v',
+ // "data"=>$data
+ // ]);
+ // }
+
+ // function Danhsachtacgia(){
+ // // You may want to implement this differently to show a list of authors
+ // $data = [
+ // "authors" => $this->tg->getAllTacgia()
+ // ];
+
+ // $this -> view('Master',[
+ // "page"=>'Tacgia_v',
+ // "data"=>$data
+ // ]);
+ // }
 ?>
