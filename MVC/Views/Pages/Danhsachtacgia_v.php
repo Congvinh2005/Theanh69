@@ -184,7 +184,7 @@
                         <a href="http://localhost/QUANLYTHUVIEN/Danhsachtacgia/sua/<?php echo $row['Matacgia'] ?>"><button
                                 class="btn-edit">✏️
                                 Sửa</button></a>
-                        <a href="./Tacgia_xoa.php?mtg=<?php echo $row['Matacgia'] ?>"
+                        <a href="http://localhost/QUANLYTHUVIEN/Danhsachtacgia/xoa/<?php echo $row['Matacgia'] ?>"
                             onclick="return confirm('Bạn có chắc chắn muốn xoá không?')"><button class="btn-delete">🗑️
                                 Xóa</button></a>
                     </td>
