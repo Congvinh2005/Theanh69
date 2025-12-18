@@ -21,6 +21,21 @@
             } else {
                 return false; // Mã tác giả chưa tồn tại
             }
-    }
+        }
+        function Tacgia_find($mtg,$ht){
+            $sql = "SELECT * from Tacgia where Matacgia like '%$mtg%' and Tentacgia like '%$ht%'";
+            return  mysqli_query($this -> con, $sql);
+       
+        }
+         function Tacgia_udate($mtg,$ht,$ns,$gt,$dt,$mail,$dc){
+                $sql = "UPDATE Tacgia SET Tentacgia='$ht', Ngaysinh='$ns', Gioitinh='$gt', Dienthoai= '$dt', Email='$mail', Diachi='$dc' WHERE Matacgia='$mtg'";
+                return mysqli_query($this->con, $sql);
+        }
+           
+       
+        function Tacgia_del($mtg){
+                $sql = "DELETE FROM Tacgia WHERE Matacgia='$mtg'";
+                return mysqli_query($this->con, $sql);
+        }
 }
 ?>

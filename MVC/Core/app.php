@@ -1,6 +1,6 @@
 <?php 
 class app{
-  protected $controller = "TacGia";
+  protected $controller = "Tacgia";
   protected $action = "Get_data";
   protected $params = [];
 

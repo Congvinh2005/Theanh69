@@ -138,25 +138,4 @@
 
 
 
-
- // function Capnhattacgia(){
- // $data = [];
-
- // $this -> view('Master',[
- // "page"=>'Tacgia_v',
- // "data"=>$data
- // ]);
- // }
-
- // function Danhsachtacgia(){
- // // You may want to implement this differently to show a list of authors
- // $data = [
- // "authors" => $this->tg->getAllTacgia()
- // ];
-
- // $this -> view('Master',[
- // "page"=>'Tacgia_v',
- // "data"=>$data
- // ]);
- // }
 ?>
