@@ -180,7 +180,7 @@
         <p class="lead">Vui lòng nhập đầy đủ thông tin tác giả. Các trường có dấu * là bắt buộc.</p>
 
 
-        <form method="post" id="authorForm" novalidate>
+        <form method="post" id="authorForm" novalidate action="http://localhost/QUANLYTHUVIEN/Danhsachtacgia/upd">
             <?php 
         if(isset($data['result'])&&mysqli_num_rows($data['result'])>0){
             while($row=mysqli_fetch_array($data['result'])){
@@ -242,7 +242,7 @@
 ?>
             <div class="actions">
 
-                <button type="submit" class="btn-primary" name="btnLuu">Lưu thông tin</button>
+                <button type="submit" class="btn-primary" name="btnSuainfor">Sửa thông tin</button>
             </div>
         </form>
     </main>

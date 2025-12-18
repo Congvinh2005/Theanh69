@@ -11,6 +11,7 @@
                 'page'=>'Danhsachtacgia_v',
                 'mtg'=>'',
                 'ht'=>'',
+                'data'=>$this -> dstg -> Tacgia_find('', ''),
                 // 'ns'=>$ns,
                 // 'gt'=>$gt,
                 // 'dt'=>$dt,
@@ -56,6 +57,33 @@
                     // 'dc'=>$dc
                 ]);
             
+        }
+        function upd(){
+            if(isset($_POST['btnSuainfor'])){
+                $mtg  = $_POST['txtMatacgia'];
+                $ht   = $_POST['txtTentacgia'];
+                $ns   = $_POST['txtNgaysinh'];
+                $gt   = $_POST['ddlGioitinh'];
+                $dt   = $_POST['txtDienthoai'];
+                $mail = $_POST['txtEmail'];
+                $dc   = $_POST['txtDiachi'];
+
+                $kq = $this -> dstg -> Tacgia_udate($mtg,$ht,$ns,$gt,$dt,$mail,$dc);
+                if($kq){
+                    echo "<script>alert('Sửa tác giả thành công');</script>";
+                    $this -> view('Master',[
+                        'page'=>'Danhsachtacgia_v',
+                        'data'=>$this -> dstg -> Tacgia_find('', ''),
+                      
+                    ]);
+                } else {
+                    echo "<script>alert('Cập nhật tác giả thất bại');</script>";
+                    $this -> view('Master',[
+                        'page'=>'Tacgiasua_v',
+                        'result'=>$this -> dstg -> Tacgia_find($mtg,''),
+                    ]);
+                }
+            }
         }
     }
 ?>
