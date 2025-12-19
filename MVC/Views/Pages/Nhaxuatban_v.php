@@ -79,7 +79,7 @@
     <div class="wrap">
         <div class="card">
             <h1 style="text-align: center;">Upload file</h1>
-            <form method="POST" enctype="multipart/form-data"
+            <!-- <form method="POST" enctype="multipart/form-data"
                 action="http://localhost/QUANLYTHUVIEN/Nhaxuatban_file/up_l">
                 <label for="note">Ghi chú</label>
                 <input id="note" name="note" type="text" placeholder="Nhập ghi chú cho file..." name="txtGhichu">
@@ -90,6 +90,18 @@
 
 
                 <button type="submit" name="btnUpload">Upload</button>
+            </form> -->
+
+            <form method="POST" enctype="multipart/form-data"
+                action="http://localhost/Quanlythuvien/Nhaxuatban_file/up_l">
+
+                <label>Ghi chú</label>
+                <input type="text" name="txtGhichu">
+
+                <label>Chọn file</label>
+                <input type="file" name="txtfile" required>
+
+                <button type="submit">Upload</button>
             </form>
 
 

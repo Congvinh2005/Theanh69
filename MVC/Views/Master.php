@@ -31,7 +31,7 @@
                                 </li>
                                 <li><a href="http://localhost/QUANLYTHUVIEN/Danhsachtacgia">Danh sách tác
                                         giả</a></li>
-                                <li><a href="http://localhost/QUANLYTHUVIEN/CapnhatNXB_file">Cập nhật NXB bằng
+                                <li><a href="http://localhost/QUANLYTHUVIEN/Nhaxuatban_file ">Cập nhật NXB bằng
                                         file</a></li>
                                 <li><a href="">Ajax</a></li>
                                 <li><a href="">JQuery</a></li>
