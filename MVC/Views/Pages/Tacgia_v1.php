@@ -127,8 +127,8 @@
             <label>Giới tính *</label>
             <select name="ddlGioitinh">
                 <option value="">-- Chọn --</option>
-                <option value="male"   <?php if(($data['gt'] ?? '')=='male') echo 'selected'; ?>>Nam</option>
-                <option value="female" <?php if(($data['gt'] ?? '')=='female') echo 'selected'; ?>>Nữ</option>
+                <option value="male"   <?php if(($data['gt'] ?? '')=='male') echo 'selected'; ?>>nam</option>
+                <option value="female" <?php if(($data['gt'] ?? '')=='female') echo 'selected'; ?>>nu</option>
                 <option value="other"  <?php if(($data['gt'] ?? '')=='other') echo 'selected'; ?>>Khác</option>
             </select>
 

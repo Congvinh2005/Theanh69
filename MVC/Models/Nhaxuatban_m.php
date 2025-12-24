@@ -7,7 +7,7 @@ class Nhaxuatban_m extends connectDB{
     //     }
 
     function NXB_ins($mnxb,$tennxb,$dt,$mail,$dc){
-    $sql = "INSERT INTO Nhaxuatban(Manxb, Tennxb, Dienthoai, Email, Diachi)
+    $sql = "INSERT INTO Nhaxuatban1(Manxb, Tennxb, Dienthoai, Email, Diachi)
             VALUES ('$mnxb','$tennxb','$dt','$mail','$dc')";
     return mysqli_query($this->con, $sql);
 }

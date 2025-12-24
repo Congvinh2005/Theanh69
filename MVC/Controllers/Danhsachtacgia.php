@@ -37,76 +37,78 @@
                 ]);
             
             }
-           if (isset($_POST['btnXuatexcel'])) {
-
-                // TẮT OUTPUT BUFFER HOÀN TOÀN
-                while (ob_get_level()) {
-                    ob_end_clean();
-                }
-
-                require_once __DIR__ . '/../Public/Classes/PHPExcel.php';
-                require_once __DIR__ . '/../Public/Classes/PHPExcel/IOFactory.php';
-
-                $objExcel = new PHPExcel();
-                $sheet = $objExcel->setActiveSheetIndex(0);
-                $sheet->setTitle('DSTacgia');
-
-                $rowCount = 1;
-
-                // Tiêu đề
-                $sheet->setCellValue('A1', 'Mã Tác Giả');
-                $sheet->setCellValue('B1', 'Họ và Tên');
-                $sheet->setCellValue('C1', 'Ngày Sinh');
-                $sheet->setCellValue('D1', 'Giới Tính');
-                $sheet->setCellValue('E1', 'Điện Thoại');
-                $sheet->setCellValue('F1', 'Email');
-                $sheet->setCellValue('G1', 'Địa Chỉ');
-
-                // Style tiêu đề
-                $sheet->getStyle('A1:G1')->getFont()->setBold(true);
-                $sheet->getStyle('A1:G1')->getAlignment()
-                    ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-                foreach (range('A','G') as $col) {
-                    $sheet->getColumnDimension($col)->setAutoSize(true);
-                }
-
-                // LẤY DỮ LIỆU
-                $mtg = $_POST['txtMatg'];
-                $ht  = $_POST['txtTentg'];
-
-                $result = $this->dstg->Tacgia_find($mtg, $ht);
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $rowCount++;
-                    $sheet->setCellValue('A'.$rowCount, $row['Matacgia']);
-                    $sheet->setCellValue('B'.$rowCount, $row['Tentacgia']);
-                    $sheet->setCellValue('C'.$rowCount, $row['Ngaysinh']);
-                    $sheet->setCellValue('D'.$rowCount, $row['Gioitinh']);
-                    $sheet->setCellValue('E'.$rowCount, $row['Dienthoai']);
-                    $sheet->setCellValue('F'.$rowCount, $row['Email']);
-                    $sheet->setCellValue('G'.$rowCount, $row['Diachi']);
-                }
-
-                // KẺ BẢNG
-                $sheet->getStyle('A1:G'.$rowCount)->applyFromArray([
-                    'borders' => [
-                        'allborders' => [
-                            'style' => PHPExcel_Style_Border::BORDER_THIN
-                        ]
-                    ]
-                ]);
-
-                // HEADER CHUẨN
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment; filename="ExportExcel.xlsx"');
-                header('Cache-Control: max-age=0');
-
-                $writer = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
-                $writer->save('php://output');
-
-                exit; // ⬅️ CỰC KỲ QUAN TRỌNG
+           if(isset($_POST['btnXuatexcel'])){
+             //code xuất excel
+             $objExcel=new PHPExcel();
+             $objExcel->setActiveSheetIndex(0);
+             $sheet=$objExcel->getActiveSheet()->setTitle('DSTacgia');
+             $rowCount=1;
+             //Tạo tiêu đề cho cột trong excel
+             
+             
+             $sheet->setCellValue('A'.$rowCount,'Mã Tác Giả');
+             $sheet->setCellValue('B'.$rowCount,'Họ và Tên');
+             $sheet->setCellValue('C'.$rowCount,'Ngày Sinh');
+             $sheet->setCellValue('D'.$rowCount,'Giới Tính');
+             $sheet->setCellValue('E'.$rowCount,'Điện Thoại');
+             $sheet->setCellValue('F'.$rowCount,'Email');
+             $sheet->setCellValue('G'.$rowCount,'Địa Chỉ');
+             
+         
+             //định dạng cột tiêu đề
+             $sheet->getColumnDimension('A')->setAutoSize(true);
+             $sheet->getColumnDimension('B')->setAutoSize(true);
+             $sheet->getColumnDimension('C')->setAutoSize(true);
+             $sheet->getColumnDimension('D')->setAutoSize(true);
+             $sheet->getColumnDimension('E')->setAutoSize(true);
+             $sheet->getColumnDimension('F')->setAutoSize(true);
+             $sheet->getColumnDimension('G')->setAutoSize(true);
+             //gán màu nền
+             $sheet->getStyle('A1:G1')->getFill()->setFillType(\PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setRGB('00FF00');
+             //căn giữa
+             $sheet->getStyle('A1:G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+             //Điền dữ liệu vào các dòng. Dữ liệu lấy từ DB
+             //Lấy dữ liệu từ các điểu khiển đưa vào biến
+            $mtg=$_POST['txtMatg'];
+            $ht=$_POST['txtTentg'];
+            // $sql="Select * From Tacgia Where Matacgia like '%$mtg%' and Tentacgia like '%$ht%'";
+            // $data=mysqli_query($con,$sql);
+            $result = $this -> dstg -> Tacgia_find($mtg,$ht);
+             
+             while($row=mysqli_fetch_array($result)){
+                 $rowCount++;
+               
+                 $sheet->setCellValue('A'.$rowCount,$row['Matacgia']);
+                 $sheet->setCellValue('B'.$rowCount,$row['Tentacgia']);
+                 $sheet->setCellValue('C'.$rowCount,$row['Ngaysinh']);
+                 $sheet->setCellValue('D'.$rowCount,$row['Gioitinh']);
+                 $sheet->setCellValue('E'.$rowCount,$row['Dienthoai']);
+                 $sheet->setCellValue('F'.$rowCount,$row['Email']);
+                 $sheet->setCellValue('G'.$rowCount,$row['Diachi']);
+                 
+             
+             }
+             //Kẻ bảng 
+             $styleAray=array(
+                 'borders'=>array(
+                     'allborders'=>array(
+                         'style'=>PHPExcel_Style_Border::BORDER_THIN
+                     )
+                 )
+                 );
+             $sheet->getStyle('A1:'.'G'.($rowCount))->applyFromArray($styleAray);
+             $filename = "ExportExcel.xlsx";
+            // Xóa output buffer (rất quan trọng)
+            if (ob_get_length()) {
+                ob_end_clean();
             }
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment; filename="'.$filename.'"');
+                header('Cache-Control: max-age=0');
+                $objWriter = PHPExcel_IOFactory::createWriter($objExcel, 'Excel2007');
+                $objWriter->save('php://output');
+                exit;
+        }
 
 
         }
